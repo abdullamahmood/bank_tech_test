@@ -1,23 +1,17 @@
+require 'date'
+
 class Transaction
 
-  attr_reader :date
-  attr_accessor :credit, :debit
+  attr_accessor :credit, :debit, :date
 
   def intiialize
-    @date = Date.today
-    @credit = nil
-    @debit = nil
+    @date = nil
+    @credit = 0
+    @debit = 0
   end
 
-  def date
-    @date = Date.today.strftime("%d/%m/%Y")
-  end
+  # def date
+  #   @date = Date.today.strftime("%d/%m/%Y")
+  # end
 
-  def credit(amount)
-    @credit = amount
-  end
-
-  def debit(amount)
-    @debit = amount
-  end
 end

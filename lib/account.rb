@@ -20,11 +20,12 @@ attr_reader :balance
   def deposit(amount)
     @transaction_log.credit(amount)
     @balance += amount
+    self
   end
 
   def withdraw(amount)
     raise "Insufficient funds! Your balance will fall below £#{MIN_LIMIT}" if @balance - amount < MIN_LIMIT
-    @transaction_log.debit(-amount)
+    @transaction_log.debit(amount)
     @balance -= amount
     self
   end

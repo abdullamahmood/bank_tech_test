@@ -1,4 +1,5 @@
 require_relative 'transaction'
+require 'date'
 
 class TransactionLog
 
@@ -7,16 +8,23 @@ class TransactionLog
 
   end
 
-  def credit
+  def credit(amount)
     @current_transaction = Transaction.new
-    @current_transaction.credit(amount)
+    @current_transaction.credit = amount
+    @current_transaction.date = Date.today.strftime("%d/%m/%Y")
+    add_transaction
+    @current_transaction = nil
   end
 
-  def debit
+  def debit(amount)
     @current_transaction = Transaction.new
-    @current_transaction.debit(-amount)
-
+    @current_transaction.debit = amount
+    @current_transaction.date = Date.today.strftime("%d/%m/%Y")
+    add_transaction
+    @current_transaction = nil
   end
+
+private
 
   def add_transaction
     @transactions << @current_transaction
